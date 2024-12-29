@@ -33,12 +33,31 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { onMounted, reactive, watch } from 'vue'
+import { useQuasar } from 'quasar'
+
+const q = useQuasar();
+
 
 const data = reactive({
   counter: 0,
   name: "",
 });
+
+watch(
+  data,
+  (value) => {
+    q.localStorage.set("data", value);
+  }
+);
+
+onMounted(() => {
+  const localStorageData = q.localStorage.getItem("data");
+  console.log(localStorageData);
+  if(localStorageData) Object.assign(data,localStorageData);
+});
+
+
 
 const increaseCounter = () => {
   data.counter++;
@@ -54,10 +73,10 @@ const resetCounter = () => {
 }
 
 const handlePan = (e) => {
-  console.log(e.delta.y);
-  if(e.delta.y < 0) increaseCounter()
+  if (e.delta.y < 0) increaseCounter()
   else decreaseCounter()
 }
+
 
 </script>
 
