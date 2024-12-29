@@ -9,11 +9,13 @@
 
     <div class="row full-width ">
       <div class="col text-center">
-        <q-btn outline round color="warning" size="lg" icon="remove" @click="decreaseCounter()"/>
+        <q-btn v-touch-repeat:300:300:300:300:50.mouse="decreaseCounter" outline round color="warning" size="lg"
+          icon="remove" @click="decreaseCounter()" />
       </div>
       <div class="col text-center text-h2">{{ data.counter }}</div>
       <div class="col text-center">
-        <q-btn outline round color="warning" size="lg" icon="add" @click="increaseCounter"/>
+        <q-btn v-touch-repeat:300:300:300:300:50.mouse="increaseCounter" outline round color="warning" size="lg"
+          icon="add" @click="increaseCounter" />
       </div>
     </div>
 
@@ -42,7 +44,7 @@ const increaseCounter = () => {
 }
 
 const decreaseCounter = () => {
-  if(data.counter >0)
+  if (data.counter > 0)
     data.counter--;
 }
 
