@@ -1,5 +1,6 @@
 <template>
-  <q-page class="flex flex-center text-white justify-center items-center">
+  <q-page v-touch-pan.vertical.prevent.mouse="handlePan"
+    class="flex flex-center text-white justify-center items-center">
 
     <div class="row">
       <q-input placeholder="Counter" color="warning" filled input-class="text-center text-white text-h6"
@@ -50,6 +51,12 @@ const decreaseCounter = () => {
 
 const resetCounter = () => {
   data.counter = 0;
+}
+
+const handlePan = (e) => {
+  console.log(e.delta.y);
+  if(e.delta.y < 0) increaseCounter()
+  else decreaseCounter()
 }
 
 </script>
